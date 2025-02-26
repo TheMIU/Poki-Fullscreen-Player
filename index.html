@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poki Fullscreen Player</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+
+</head>
+
+<body>
+    <div class="container">
+        <h1>Poki Fullscreen Player</h1>
+        <p>Some Poki games are not in fullscreen, so I made this simple fix!</p>
+
+        <h3> How to Use ✨ </h3>
+        <ol>
+            <li>Go to the game page on <strong>Poki.com</strong></li>
+            <li>Open the <strong>Console</strong> (Press <code>F12</code> → Go to <code>Console</code>)</li>
+            <li>Copy & paste the following script, then press <code>Enter</code></li>
+        </ol>
+
+        <pre class="code-container"><code class="language-javascript" id="code">
+
+            (function() {
+                let gameDiv = document.getElementById('game-player');
+                if (!gameDiv) {
+                    console.log("Game div not found!");
+                    return;
+                }
+
+                // Remove everything else
+                document.body.innerHTML = '';
+                document.body.appendChild(gameDiv);
+
+                // Apply fullscreen styles
+                gameDiv.style.position = 'fixed';
+                gameDiv.style.top = '0';
+                gameDiv.style.left = '0';
+                gameDiv.style.width = '100vw';
+                gameDiv.style.height = '100vh';
+                gameDiv.style.zIndex = '9999';
+                gameDiv.style.backgroundColor = 'black';
+
+                console.log("Fullscreen mode activated!");
+
+                // Ask user to enter fullscreen
+                let goFullscreen = confirm("Press OK to enter fullscreen mode!");
+                if (goFullscreen) {
+                    if (document.documentElement.requestFullscreen) {
+                        document.documentElement.requestFullscreen();
+                    } else if (document.documentElement.mozRequestFullScreen) { 
+                        // Firefox
+                        document.documentElement.mozRequestFullScreen();
+                    } else if (document.documentElement.webkitRequestFullscreen) { 
+                        // Chrome, Safari, Edge
+                        document.documentElement.webkitRequestFullscreen();
+                    } else if (document.documentElement.msRequestFullscreen) { 
+                        // IE/Edge
+                        document.documentElement.msRequestFullscreen();
+                    }
+                }
+            })();
+
+        </code></pre>
+
+        <button id="copyButton" onclick="copyCode()">📋 Copy Code</button>
+
+        <h3>🎮 Now enjoy your game in fullscreen!</h3>
+
+    </div>
+
+    <script src="script.js"> </script>
+</body>
+
+</html>
