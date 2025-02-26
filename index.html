@@ -31,12 +31,8 @@
                     console.log("Game div not found!");
                     return;
                 }
-
-                // Remove everything else
-                document.body.innerHTML = '';
-                document.body.appendChild(gameDiv);
-
-                // Apply fullscreen styles
+            
+                // Apply fullscreen styles to the game div
                 gameDiv.style.position = 'fixed';
                 gameDiv.style.top = '0';
                 gameDiv.style.left = '0';
@@ -44,9 +40,13 @@
                 gameDiv.style.height = '100vh';
                 gameDiv.style.zIndex = '9999';
                 gameDiv.style.backgroundColor = 'black';
-
+            
                 console.log("Fullscreen mode activated!");
-
+            
+                // Hide scrollbars on the page
+                document.body.style.overflow = 'hidden';
+                document.documentElement.style.overflow = 'hidden';
+            
                 // Ask user to enter fullscreen
                 let goFullscreen = confirm("Press OK to enter fullscreen mode!");
                 if (goFullscreen) {
@@ -64,6 +64,7 @@
                     }
                 }
             })();
+            
 
         </code></pre>
 
